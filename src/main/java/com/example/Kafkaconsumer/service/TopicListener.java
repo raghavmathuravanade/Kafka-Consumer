@@ -15,11 +15,15 @@ public class TopicListener {
     @Value("${topic.name.consumer")
     private String topicName;
 
-    @KafkaListener(topics = "${topic.name.consumer}", groupId = "group_id")
-    public void consume(ConsumerRecord<String, String> payload){
+    @Value("$spring.kafka.consumer.group-id")
+    private String groupID;
+
+    @KafkaListener(topics = "${topic.name.consumer}", groupId = "${spring.kafka.consumer.group-id}")
+    public void consume(ConsumerRecord<String, String> payload) throws InterruptedException {
 
         String logMessage = String.format( "tópic: %1$s --- partition : %2$s --- message : %3$s --- offset : %4$s" ,
                 payload.topic(), payload.partition(), payload.value(), payload.offset());
+        Thread.sleep(1000);
         log.info(logMessage);
 
     }
