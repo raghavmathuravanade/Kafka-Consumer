@@ -29,7 +29,7 @@ public class TopicListener {
 
         String logMessage = String.format( "tópic: %1$s --- partition : %2$s --- message : %3$s --- offset : %4$s" ,
                 payload.topic(), payload.partition(), payload.value(), payload.offset());
-        Thread.sleep(400);
+        Thread.sleep(700);
         acknowledgment.acknowledge();
         log.info(logMessage + " committed");
 
