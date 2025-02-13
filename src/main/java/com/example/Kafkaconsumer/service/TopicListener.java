@@ -39,6 +39,9 @@ public class TopicListener {
             log.info(logMessage + " committed");
         }
 
+//        acknowledgment.acknowledge();
+//        log.info(logMessage + " committed");
+
 
     }
 
